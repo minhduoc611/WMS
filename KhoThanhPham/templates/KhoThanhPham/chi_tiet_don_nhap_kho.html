@@ -1,0 +1,42 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <div class="mb-4">
+        <a href="{% url 'KhoThanhPham:danh_sach_nhap_kho' %}" class="inline-flex items-center px-2 py-1 text-black hover:text-black italic text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+            </svg>
+            Quay lại danh sách đơn nhập kho
+        </a>
+    </div>
+    <h1 class="text-2xl font-bold mb-4">Chi Tiết Đơn Nhập Kho #{{ don_nhap_kho.id }}</h1>
+    <p><strong>Ngày Nhập:</strong> {{ don_nhap_kho.ngay_nhap|date:"d/m/Y H:i" }}</p>
+
+    <h2 class="text-lg font-semibold mt-6">Chi Tiết Thành Phẩm</h2>
+    <table class="table-auto w-full bg-white rounded-lg shadow-md mt-4">
+        <thead class="text-xs text-gray-700 uppercase bg-yellow-500 dark:bg-gray-900 dark:text-gray-100">
+            <tr class="text-white">
+                <th class="px-4 py-2">Thành Phẩm</th>
+                <th class="px-4 py-2">Màu sắc</th>
+                <th class="px-4 py-2">size</th>
+                <th class="px-4 py-2">Số Lượng</th>
+            </tr>
+        </thead>
+        <tbody class="text-sm text-gray-800 text-center">
+            {% for item in items %}
+            <tr class="bg-gray-100 border-b text-center">
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.thanh_pham.ten_thanh_pham }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.thanh_pham.mau_sac }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.thanh_pham.size }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.so_luong }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2" class="px-4 py-2 text-center">Không có thành phẩm nào trong đơn nhập kho này</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

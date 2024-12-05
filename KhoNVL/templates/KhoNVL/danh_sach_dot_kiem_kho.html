@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Danh sách Đợt Kiểm Kho</h1>
+
+    <div class="overflow-x-auto">
+        <table class="table-auto w-full bg-white rounded-lg shadow-md mt-6">
+            <thead class="text-xs text-gray-700 uppercase bg-yellow-500 dark:bg-gray-900 dark:text-gray-100">
+                <tr class="text-white">
+                    <th class="px-4 py-2">ID Đợt Kiểm Kho</th>
+                    <th class="px-4 py-2">Ngày Kiểm</th>
+                    <th class="px-4 py-2">Số Lượng Mục Kiểm Kho</th>
+                    <th class="px-4 py-2">Chi Tiết</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm text-gray-800 text-center">
+                {% for dot in danh_sach_dots %}
+                <tr class="border-b hover:bg-gray-100">
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ dot.id }}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ dot.ngay_kiem|date:"d/m/Y H:i" }}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ dot.total_items }}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">
+                        <a href="{% url 'chi_tiet_dot_kiem_kho' dot.id %}" class="text-blue-500 hover:underline">
+                            Xem chi tiết
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center px-4 py-2">Không có đợt kiểm kho nào.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,289 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+Danh sách Nguyên Vật Liệu
+{% endblock %}
+
+{% block content %}
+
+<meta name="csrf-token" content="{{ csrf_token }}">
+
+<div class="container mx-auto p-4 relative">
+    <h1 class="text-2xl font-bold mb-4">Danh sách Nguyên Vật Liệu</h1>
+
+
+    <button id="open-modal-btn" class="text-gray-900 bg-white border border-yellow-500 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-yellow-500 dark:hover:bg-gray-700 dark:focus:ring-yellow-500 absolute top-4 right-4">Thêm mới +</button>
+
+    <button id="open-upload-modal-btn" class="text-gray-900 bg-white border border-yellow-500 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-yellow-500 dark:hover:bg-gray-700 dark:focus:ring-yellow-500 absolute top-4 right-44">
+        <i class="fas fa-file-excel mr-2"></i> Nhập File Excel
+    </button>
+
+    <form method="GET" class="mb-4">
+        <div class="flex space-x-4 items-center">
+            <!-- Tên vải -->
+            <div class="w-1/3">
+                <input type="text" name="ten_vai" id="ten_vai" class="border rounded w-full py-2 px-3 text-gray-700" value="{{ ten_vai }}" placeholder="Tìm theo tên vải">
+            </div>
+    
+            <!-- Nhà cung cấp -->
+            <div class="w-1/3">
+                <select name="nha_cung_cap" id="nha_cung_cap" class="border rounded w-full py-2 px-3 text-gray-700">
+                    <option value="">Chọn nhà cung cấp</option>
+                    {% for ncc in danh_sach_ncc %}
+                        <option value="{{ ncc.id }}" {% if ncc.id == nha_cung_cap %}selected{% endif %}>{{ ncc.ten_ncc }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+            <!-- Màu sắc -->
+            <div class="w-1/3">
+                <input type="text" name="mau_sac" id="mau_sac" class="border rounded w-full py-2 px-3 text-gray-700" value="{{ mau_sac }}" placeholder="Tìm theo màu sắc">
+            </div>
+            
+            <!-- Nút Tìm kiếm -->
+            <div>
+                <button type="submit" class="p-2.5 text-sm font-medium text-white bg-yellow-500 rounded-lg border border-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                    <span class="sr-only">Search</span>
+                </button>
+            </div>
+        </div>
+    </form>
+    
+    
+    
+    
+    
+    <!-- Modal thêm NVL -->
+    <div id="nvl-modal" class="fixed z-10 inset-0 overflow-y-auto hidden ">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg ">
+                <h2 class="text-xl font-semibold mb-4">Thêm Nguyên Vật Liệu</h2>
+                <form id="nvl-form" method="POST" enctype="multipart/form-data" class="font-sans space-y-6">
+                    <div class="mb-4">
+                        <label for="id_ten_vai" class="block text-sm font-medium text-gray-700">Tên Vải</label>
+                        <input type="text" name="ten_vai" id="id_ten_vai" class="border rounded w-full py-2 px-3 text-gray-700" placeholder="Vải, Len, Lụa,..." required>
+                    </div>
+                
+                    <div class="mb-4 flex space-x-4">
+                        <div class="w-1/3">
+                            <label for="id_mau_sac" class="block text-sm font-medium text-gray-700">Màu Sắc</label>
+                            <input type="text" name="mau_sac" id="id_mau_sac" class="border rounded w-full py-2 px-3 text-gray-700" placeholder="Đỏ, Cam, Vàng,..." required>
+                        </div>
+                
+                        <div class="w-1/3">
+                            <label for="id_don_vi_tinh" class="block text-sm font-medium text-gray-700">Đơn Vị Tính</label>
+                            <input type="text" name="don_vi_tinh" id="id_don_vi_tinh" class="border rounded w-full py-2 px-3 text-gray-700" placeholder="m" required>
+                        </div>
+                
+                        <div class="w-1/3">
+                            <label for="id_so_luong_ton" class="block text-sm font-medium text-gray-700">Số Lượng Tồn</label>
+                            <input type="number" name="so_luong_ton" id="id_so_luong_ton" class="border rounded w-full py-2 px-3 text-gray-700" required>
+                        </div>
+                    </div>
+                
+                    <div class="mb-4">
+                        <label for="id_nha_cung_cap" class="block text-sm font-medium text-gray-700">Nhà Cung Cấp</label>
+                        <select name="nha_cung_cap" id="id_nha_cung_cap" class="border rounded w-full py-2 px-3 text-gray-700">
+                            {% for ncc in danh_sach_ncc %}
+                                <option value="{{ ncc.id }}">{{ ncc.ten_ncc }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                
+                    <div class="mb-4">
+                        <label for="id_gia" class="block text-sm font-medium text-gray-700">Giá</label>
+                        <input type="number" name="gia" id="id_gia" class="border rounded w-full py-2 px-3 text-gray-700" required>
+                    </div>
+                
+                    <div class="mb-4">
+                        <label for="id_hinh_anh" class="block text-sm font-medium text-gray-700">Hình Ảnh</label>
+                        <input type="file" name="hinh_anh" id="id_hinh_anh" class="border rounded w-full py-2 px-3">
+                    </div>
+                
+                    <div class="flex justify-end gap-4">
+                        <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 fade-in">Thêm</button>
+                        <button type="button" id="close-modal-btn" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 fade-in">Hủy</button>
+                    </div>
+                </form>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal upload file Excel -->
+    <div id="upload-modal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+                <h2 class="text-xl font-semibold mb-4">Upload File Excel</h2>
+                <form id="upload-form" method="POST" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label for="file_excel" class="block text-sm font-medium text-gray-700">Chọn file Excel</label>
+                        <input type="file" name="file_excel" id="file_excel" accept=".xlsx, .xls" class="border rounded w-full py-2 px-3" required>
+                    </div>
+                    <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Upload</button>
+                    <button type="button" id="close-upload-modal-btn" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hủy</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng hiển thị danh sách NVL -->
+    <table class="table-auto w-full bg-white rounded-lg shadow-md mt-6">
+        <thead class="text-xs text-gray-700 uppercase bg-yellow-500 dark:bg-gray-900 dark:text-gray-100">
+            <tr class="text-white">
+                <th class="px-4 py-2">ID Vải</th>
+                <th class="px-4 py-2">Tên Vải</th>
+                <th class="px-4 py-2">Màu sắc</th>
+                <th class="px-4 py-2">Nhà cung cấp</th>
+                <th class="px-4 py-2">Số lượng tồn kho</th>
+                <th class="px-4 py-2">Đơn vị tính</th>
+                <th class="px-4 py-2">Giá</th>
+                <th class="px-4 py-2">Hình ảnh</th>
+            </tr>
+        </thead>
+        <tbody id="nvl-list" class="text-sm text-gray-800">
+            {% for nvl in danh_sach_nvl %}
+            <tr class="bg-gray-100 border-b text-left">
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ nvl.id_vai }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ nvl.ten_vai }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ nvl.mau_sac }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ nvl.nha_cung_cap.ten_ncc }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ nvl.so_luong_ton }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ nvl.don_vi_tinh }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 e   ven:bg-gray-200">{{ nvl.gia }}</td>
+                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">
+                    {% if nvl.hinh_anh %}
+                    <img src="{{ nvl.hinh_anh.url }}" alt="Hình ảnh vải" class="w-16 h-16 object-cover">
+                    {% else %}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Open modal thêm NVL
+    document.getElementById('open-modal-btn').addEventListener('click', function() {
+        document.getElementById('nvl-modal').classList.remove('hidden');
+    });
+
+    // Open modal upload Excel
+    document.getElementById('open-upload-modal-btn').addEventListener('click', function() {
+        document.getElementById('upload-modal').classList.remove('hidden');
+    });
+
+    // Close modals
+    document.getElementById('close-modal-btn').addEventListener('click', function() {
+        document.getElementById('nvl-modal').classList.add('hidden');
+    });
+    document.getElementById('close-upload-modal-btn').addEventListener('click', function() {
+        document.getElementById('upload-modal').classList.add('hidden');
+    });
+
+    const getCSRFToken = () => {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        console.log("CSRF Token: ", csrfToken);
+        return csrfToken;
+    };
+
+    document.getElementById('nvl-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let formData = new FormData(this);
+        let csrfToken = getCSRFToken();
+
+        fetch("{% url 'add_nvl' %}", {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrfToken,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Thêm nguyên vật liệu thành công!');
+                // Thêm mới NVL vào danh sách mà không cần reload
+                let newRow = `<tr class="bg-gray-100 border-b text-left">
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${data.nvl.id_vai}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${data.nvl.ten_vai}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${data.nvl.mau_sac}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${data.nvl.nha_cung_cap}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${data.nvl.so_luong_ton}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${data.nvl.don_vi_tinh}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${data.nvl.gia}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">
+                        ${data.nvl.hinh_anh ? `<img src="${data.nvl.hinh_anh}" alt="Hình ảnh vải" class="w-16 h-16 object-cover">` : ''}
+                    </td>
+                </tr>`;
+                document.getElementById('nvl-list').insertAdjacentHTML('beforeend', newRow);
+                document.getElementById('nvl-modal').classList.add('hidden');
+                document.getElementById('nvl-form').reset(); // Reset form after submission
+            } else {
+                alert('Có lỗi xảy ra khi thêm nguyên vật liệu: ' + JSON.stringify(data.errors));
+            }
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+            alert('Có lỗi xảy ra.');
+        });
+    });
+
+    // Fetch API for upload form
+// Fetch API for upload form
+document.getElementById('upload-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+    let csrfToken = getCSRFToken();
+
+    fetch("{% url 'upload_excel_nvl' %}", {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': csrfToken,
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log(data.nvls);  // Kiểm tra dữ liệu trả về
+            alert('Upload file thành công!');
+            // Thêm dữ liệu từ Excel vào bảng
+            data.nvls.forEach(nvl => {
+                let newRow = `<tr class="bg-gray-100 border-b text-left">
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${nvl.id_vai}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${nvl.ten_vai}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${nvl.mau_sac}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${nvl.nha_cung_cap}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${nvl.so_luong}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${nvl.don_vi_tinh}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${nvl.gia}</td>
+                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">
+                        ${data.nvl.hinh_anh ? `<img src="${data.nvl.hinh_anh}" alt="Hình ảnh vải" class="w-16 h-16 object-cover">` : ''}
+                    </td>
+                </tr>`;
+                document.getElementById('nvl-list').insertAdjacentHTML('beforeend', newRow);
+            });
+            document.getElementById('upload-modal').classList.add('hidden');
+            document.getElementById('upload-form').reset(); // Reset form after submission
+        } else {
+            alert('Có lỗi xảy ra khi upload file: ' + JSON.stringify(data.errors));
+        }
+    })
+    .catch(error => {
+        console.error('Lỗi:', error);
+        alert('Có lỗi xảy ra.');
+    });
+});
+
+
+</script>
+{% endblock %}

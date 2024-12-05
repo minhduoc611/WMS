@@ -1,0 +1,25 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container mx-auto p-6 text-center page-background">
+    <h1 class="text-4xl font-bold mb-4">Hệ thống quản lý kho The SHEA</h1>
+    <p class="text-lg mb-6">Chào mừng bạn đến với hệ thống quản lý kho hàng của chúng tôi. Quản lý hiệu quả các nguyên vật liệu, sản phẩm và quy trình xuất nhập kho.</p>
+</div>
+
+<style>
+    .page-background {
+       
+        background-size: cover; /* Đảm bảo ảnh phủ toàn màn hình */
+        background-position: center; /* Căn giữa ảnh */
+        background-attachment: fixed; /* Giữ ảnh nền cố định khi cuộn trang */
+        height: 100vh; /* Chiều cao toàn màn hình */
+        width: 100%; /* Đảm bảo phần tử chiếm chiều rộng toàn màn hình */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Căn giữa nội dung */
+        align-items: center; /* Căn giữa nội dung theo chiều ngang */
+        color: dark; /* Đảm bảo chữ rõ ràng nếu nền quá sáng */
+    }
+    
+</style>
+{% endblock %}
