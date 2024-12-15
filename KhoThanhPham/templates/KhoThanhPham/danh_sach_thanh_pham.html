@@ -4,30 +4,44 @@
     {% endblock %}
     {% block content %}
     <div class="container mx-auto p-4 relative">
-        <h1 class="text-2xl font-bold mb-4">Danh Sách Thành Phẩm trong kho</h1>
+        <h1 class="text-2xl font-bold mb-4 text-yellow-500">Danh Sách Thành Phẩm trong kho</h1>
         <div class="mb-4">
             <form method="GET" action="{% url 'KhoThanhPham:danh_sach_thanh_pham' %}" class="flex space-x-4 items-center">
-                <!-- Tên thành phẩm -->
-                <div class="w-1/3">
-                    <input type="text" name="ten_thanh_pham" value="{{ ten_thanh_pham }}" class="border rounded w-full py-2 px-3 text-gray-700" placeholder="Tìm tên thành phẩm" />
-                </div>
-        
-                <!-- Màu sắc -->
-                <div class="w-1/3">
-                    <input type="text" name="mau_sac" value="{{ mau_sac }}" class="border rounded w-full py-2 px-3 text-gray-700" placeholder="Tìm màu sắc" />
-                </div>
-        
-                <!-- Size -->
-                <div class="w-1/3">
-                    <select name="size" class="border rounded w-full py-2 px-3 text-gray-700">
+                <div class="w-full max-w-sm min-w-[200px]">
+                    <div class="relative">            
+                      <input type="text" name="ten_thanh_pham" value="{{ ten_thanh_pham }}" class="w-full pl-3 pr-10 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Tìm tên thành phẩm" />
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="absolute w-5 h-5 top-2.5 right-2.5 text-slate-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  <div class="w-full max-w-sm min-w-[200px]">
+                    <div class="relative">            
+                      <input type="text" name="mau_sac" value="{{ mau_sac }}" class="w-full pl-3 pr-10 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Tìm màu sắc" />
+                      
+         
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute w-5 h-5 top-2.5 right-2.5 text-slate-600">
+                        <path fill-rule="evenodd" d="M20.599 1.5c-.376 0-.743.111-1.055.32l-5.08 3.385a18.747 18.747 0 0 0-3.471 2.987 10.04 10.04 0 0 1 4.815 4.815 18.748 18.748 0 0 0 2.987-3.472l3.386-5.079A1.902 1.902 0 0 0 20.599 1.5Zm-8.3 14.025a18.76 18.76 0 0 0 1.896-1.207 8.026 8.026 0 0 0-4.513-4.513A18.75 18.75 0 0 0 8.475 11.7l-.278.5a5.26 5.26 0 0 1 3.601 3.602l.502-.278ZM6.75 13.5A3.75 3.75 0 0 0 3 17.25a1.5 1.5 0 0 1-1.601 1.497.75.75 0 0 0-.7 1.123 5.25 5.25 0 0 0 9.8-2.62 3.75 3.75 0 0 0-3.75-3.75Z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  <div class="w-full max-w-sm min-w-[200px]">
+                    <div class="relative">
+                      <select name="size" class="w-full pl-3 pr-10 py-2 bg-transparent text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow">
                         <option value="" {% if not size %}selected{% endif %}>Chọn size</option>
                         <option value="S" {% if size == 'S' %}selected{% endif %}>S</option>
                         <option value="M" {% if size == 'M' %}selected{% endif %}>M</option>
                         <option value="L" {% if size == 'L' %}selected{% endif %}>L</option>
                         <option value="XL" {% if size == 'XL' %}selected{% endif %}>XL</option>
                         <option value="XXL" {% if size == 'XXL' %}selected{% endif %}>XXL</option>
-                    </select>
-                </div>
+                      </select>
+                      
+                      
+                    </div>
+                  </div>
+                  
         
                 <!-- Nút tìm kiếm -->
                 <div>
@@ -42,8 +56,8 @@
         </div>
         
 
-        <button id="open-modal-thanhpham-btn" class="text-gray-900 bg-white border border-yellow-500 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-yellow-500 dark:hover:bg-gray-700 dark:focus:ring-yellow-500 absolute top-4 right-4">Thêm mới +</button>
-        <button id="open-upload-modal-thanhpham-btn" class="text-gray-900 bg-white border border-yellow-500 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-yellow-500 dark:hover:bg-gray-700 dark:focus:ring-yellow-500 absolute top-4 right-44">
+        <button id="open-modal-thanhpham-btn" class="text-white bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 mb-2 absolute top-4 right-4">Thêm mới +</button>
+        <button id="open-upload-modal-thanhpham-btn" class="text-white bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 mb-2 absolute top-4 right-44">
             <i class="fas fa-file-excel mr-2"></i> Nhập File Excel
         </button>
 
@@ -111,7 +125,7 @@
         </div>
 
         <table class="table-auto w-full bg-white rounded-lg shadow-md mt-4">
-            <thead class="text-xs text-gray-700 uppercase bg-yellow-500 dark:bg-gray-900 dark:text-gray-100">
+            <thead class="text-xs text-gray-700 uppercase bg-blue-800 dark:bg-gray-900 dark:text-gray-100">
                 <tr class="text-white">
                     <th class="px-4 py-2">Tên Thành Phẩm</th>
                     <th class="px-4 py-2">Đơn Giá (VND)</th>
@@ -120,14 +134,14 @@
                     <th class="px-4 py-2">Số Lượng Tồn Kho</th>
                 </tr>
             </thead>
-            <tbody id="thanh-pham-list" class="text-sm text-gray-800">
+            <tbody id="thanh-pham-list" class="text-sm text-gray-800 text-center">
                 {% for tp in danh_sach_tp %}
-                <tr class="border-b">
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ tp.ten_thanh_pham }}</td>
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ tp.don_gia|floatformat:0 }}</td>
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ tp.mau_sac }}</td>
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ tp.size }}</td>
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ tp.so_luong_ton }}</td>
+                <tr class="odd:bg-[#F2E7C3] odd:dark:bg-gray-900 even:bg-[#D1ECF1] even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-[#E6B849]">
+                    <td class="px-4 py-2 font-medium">{{ tp.ten_thanh_pham }}</td>
+                    <td class="px-4 py-2 font-medium">{{ tp.don_gia|floatformat:0 }}</td>
+                    <td class="px-4 py-2 font-medium">{{ tp.mau_sac }}</td>
+                    <td class="px-4 py-2 font-medium">{{ tp.size }}</td>
+                    <td class="px-4 py-2 font-medium">{{ tp.so_luong_ton }}</td>
                 </tr>
                 {% empty %}
                 <tr>
@@ -224,13 +238,13 @@
                         // Create new row and update table dynamically
                         const newRow = document.createElement('tr');
                         newRow.classList.add('border-b');
-                        newRow.innerHTML = `
-                            <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${result.ten_thanh_pham}</td>
-                            <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${result.don_gia}</td>
-                            <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${result.mau_sac}</td>
-                            <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${result.size}</td>
-                            <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${result.so_luong_ton}</td>
-                        `;
+                        newRow.innerHTML = ` <tr class="odd:bg-[#F2E7C3] odd:dark:bg-gray-900 even:bg-[#D1ECF1] even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-[#E6B849]">
+                            <td class="px-4 py-2 font-medium">${result.ten_thanh_pham}</td>
+                            <td class="px-4 py-2 font-medium">${result.don_gia}</td>
+                            <td class="px-4 py-2 font-medium">${result.mau_sac}</td>
+                            <td class="px-4 py-2 font-medium">${result.size}</td>
+                            <td class="px-4 py-2 font-medium">${result.so_luong_ton}</td>
+                        </tr>`;
                         document.getElementById('thanh-pham-list').appendChild(newRow);
                         document.getElementById('add-thanh-pham-modal').classList.add('hidden');
                     } else {
@@ -263,20 +277,19 @@
                         document.getElementById('upload-message').textContent = 'File đã được tải lên thành công!';
                         setTimeout(function() {
                             document.getElementById('upload-thanhpham-modal').classList.add('hidden');
-                            
-                            // Dynamically update the table with the new data (for example, assuming result contains updated product list)
+                            location.reload();     
                             const tableBody = document.getElementById('thanh-pham-list');
                             tableBody.innerHTML = ''; // Clear the current list
                             result.updated_list.forEach(item => {
                                 const newRow = document.createElement('tr');
                                 newRow.classList.add('border-b');
-                                newRow.innerHTML = `
-                                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${item.ten_thanh_pham}</td>
-                                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${item.don_gia}</td>
-                                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${item.mau_sac}</td>
-                                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${item.size}</td>
-                                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">${item.so_luong_ton}</td>
-                                `;
+                                newRow.innerHTML = `<tr class="odd:bg-[#F2E7C3] odd:dark:bg-gray-900 even:bg-[#D1ECF1] even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-[#E6B849]">
+                                    <td class="px-4 py-2 font-medium">${item.ten_thanh_pham}</td>
+                                    <td class="px-4 py-2 font-medium">${item.don_gia}</td>
+                                    <td class="px-4 py-2 font-medium">${item.mau_sac}</td>
+                                    <td class="px-4 py-2 font-medium">${item.size}</td>
+                                    <td class="px-4 py-2 font-medium">${item.so_luong_ton}</td>
+                                </tr>`;
                                 tableBody.appendChild(newRow);
                             });
                         }, 2000);

@@ -8,8 +8,37 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
+    <style>
+      body {
+          font-family: 'Nunito';
+      }
+      #sidebar-multi-level-sidebar a:hover {
+         background-color: #0b63a3 !important; /* Màu hover hợp với nền xanh */
+         color: white !important;
+     }
+  
+      .button-hover:hover {
+      background-color: #0b63a3; /* Màu nền khi hover */
+      color: white; /* Màu chữ khi hover */
+      }
+
+      #sidebar-multi-level-sidebar {
+         position: fixed;
+         height: 100%;  
+         top: 0;
+         left: 0;
+}
+
+
+      main {
+         margin-left: 16rem; /* 64px (w-64) = 16rem */
+      }
+
+      </style>
 </head>
+
 
 
 <body>
@@ -20,15 +49,16 @@
         </svg>
      </button>
 
-        <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-            <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-                <div class="flex items-center justify-center mb-6">
+        <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"style="width: 280px;"  aria-label="Sidebar">
+            <div class="h-full px-3 py-4 overflow-y-scroll bg-[#064789] dark:bg-[#064789] ">
+               <div class="flex items-center justify-center mb-6 text-white">
                   <a href="{% url 'index' %}" target="_blank">
-                    <img src="https://theshea.s3.amazonaws.com/static/img/footer_logo.png" alt="The SHEA Logo" class="w-32 h-auto">
-                </div>
+                      <img src="https://theshea.s3.amazonaws.com/static/img/footer_logo.png" alt="The SHEA Logo" class="w-32 h-auto">
+                  </a>
+              </div>
                <ul class="space-y-2 font-medium">
                   <li>
-                     <a href="{%url 'tableau_dashboard'%}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                     <a href="{%url 'tableau_dashboard'%}" class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
@@ -38,19 +68,24 @@
                      </a>
                   </li>
 
-                <div class="text-gray-900 dark:text-white font-semibold mt-4 text-dark uppercase border-b border-gray-500 flex items-center">
+                <div class="text-white dark:text-white font-semibold mt-4 text-dark uppercase border-b border-gray-500 flex items-center">
                     <svg class="w-7 h-7 mr-7 text-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     </svg>
                     KHO NVL
                 </div>
                 <li>
-                  <a href="{% url 'ncc-list' %}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                      <img src="https://i0.wp.com/www.mercuryheights.com/wp-content/uploads/2019/04/31-313320_logistics-icon-clipart-logistics-computer-icons-supply-transparent.jpg" alt="Nhà cung cấp" class="flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white">
+                  <a href="{% url 'ncc-list' %}" class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z" />
+                        <path d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z" />
+                        <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
+                      </svg>
+                      
                       <span class="flex-1 ms-3 whitespace-nowrap">Nhà cung cấp</span>
                   </a>
-              </li>
+              </li>  
                  <li>
-                    <a href="{% url 'nvl-list' %}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{% url 'nvl-list' %}" class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                       </svg>
@@ -59,27 +94,27 @@
                     </a>
                  </li>
                 <li>
-                    <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-nhap-nvl" data-collapse-toggle="dropdown-nhap-nvl">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <button type="button" 
+                  class="flex items-center w-full p-2 text-base text-white rounded-lg group button-hover" aria-controls="dropdown-nhap-nvl" data-collapse-toggle="dropdown-nhap-nvl">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
-                      </svg>
-                      
-                          <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Nhập kho NVL</span>
-                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                          </svg>
-                    </button>
+                  </svg>
+                  <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Nhập kho NVL</span>
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                  </svg>
+               </button>
                     <ul id="dropdown-nhap-nvl" class="hidden py-2 space-y-2">
                           <li>
-                             <a href="{% url 'tao_don_hang' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đơn nhập kho NVL</a>
+                             <a href="{% url 'tao_don_hang' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đơn nhập kho NVL</a>
                           </li>
                           <li>
-                             <a href="{% url 'danh_sach_don_nhap_kho' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đơn nhập kho NVL</a>
+                             <a href="{% url 'danh_sach_don_nhap_kho' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đơn nhập kho NVL</a>
                           </li>
                     </ul>
                  </li>
                   <li>
-                    <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-xuat-nvl" data-collapse-toggle="dropdown-xuat-nvl">
+                    <button type="button" class="flex items-center w-full p-2 text-base text-white rounded-lg group button-hover" aria-controls="dropdown-xuat-nvl" data-collapse-toggle="dropdown-xuat-nvl">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
                       </svg>
@@ -91,17 +126,17 @@
                     </button>
                     <ul id="dropdown-xuat-nvl" class="hidden py-2 space-y-2">
                           <li>
-                             <a href="{% url 'tao_dot_xuat_kho' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đơn xuất kho NVL</a>
+                             <a href="{% url 'tao_dot_xuat_kho' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đơn xuất kho NVL</a>
                           </li>
                           <li>
-                             <a href="{% url 'danh_sach_dot_xuat_kho' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đơn xuất kho NVL</a>
+                             <a href="{% url 'danh_sach_dot_xuat_kho' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đơn xuất kho NVL</a>
                           </li>
                     </ul>
                  </li>
 
 
                  <li>
-                    <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-kiem-nvl" data-collapse-toggle="dropdown-kiem-nvl">
+                    <button type="button" class="flex items-center w-full p-2 text-base text-white rounded-lg group button-hover" aria-controls="dropdown-kiem-nvl" data-collapse-toggle="dropdown-kiem-nvl">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
                       </svg>
@@ -113,21 +148,21 @@
                     </button>
                     <ul id="dropdown-kiem-nvl" class="hidden py-2 space-y-2">
                           <li>
-                             <a href="{% url 'tao_dot_kiem_kho' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đợt kiểm kho NVL</a>
+                             <a href="{% url 'tao_dot_kiem_kho' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đợt kiểm kho NVL</a>
                           </li>
                           <li>
-                             <a href="{% url 'danh_sach_dot_kiem_kho'%}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đợt kiểm kho NVL</a>
+                             <a href="{% url 'danh_sach_dot_kiem_kho'%}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đợt kiểm kho NVL</a>
                           </li>
                     </ul>
                  </li>
-                 <div class="text-gray-900 dark:text-white font-semibold mt-4 text-dark uppercase border-b border-gray-500 flex items-center">
+                 <div class="text-white dark:text-white font-semibold mt-4 text-dark uppercase border-b border-gray-500 flex items-center">
                     <svg class="w-7 h-7 mr-7 text-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     </svg>
                     KHO THÀNH PHẨM
                 </div>
 
                 <li>
-                  <a href="{% url 'KhoThanhPham:danh_sach_thanh_pham' %}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <a href="{% url 'KhoThanhPham:danh_sach_thanh_pham' %}" class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                       </svg>
@@ -137,7 +172,7 @@
                </li>
 
                  <li>
-                    <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-nhap-thanhpham" data-collapse-toggle="dropdown-nhap-thanhpham">
+                    <button type="button" class="flex items-center w-full p-2 text-base text-white rounded-lg group button-hover" aria-controls="dropdown-nhap-thanhpham" data-collapse-toggle="dropdown-nhap-thanhpham">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
                       </svg>
@@ -149,16 +184,16 @@
                     </button>
                     <ul id="dropdown-nhap-thanhpham" class="hidden py-2 space-y-2">
                           <li>
-                             <a href="{% url 'KhoThanhPham:tao_nhap_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đơn nhập kho thành phẩm</a>
+                             <a href="{% url 'KhoThanhPham:tao_nhap_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đơn nhập kho thành phẩm</a>
                           </li>
                           <li>
-                             <a href="{% url 'KhoThanhPham:danh_sach_nhap_kho' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đơn nhập kho thành phẩm</a>
+                             <a href="{% url 'KhoThanhPham:danh_sach_nhap_kho' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đơn nhập kho thành phẩm</a>
                           </li>
                     </ul>
                  </li>
 
                  <li>
-                   <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-xuat-thanhpham" data-collapse-toggle="dropdown-xuat-thanhpham">
+                   <button type="button" class="flex items-center w-full p-2 text-base text-white rounded-lg group button-hover" aria-controls="dropdown-xuat-thanhpham" data-collapse-toggle="dropdown-xuat-thanhpham">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
                       </svg>
@@ -169,17 +204,17 @@
                    </button>
                    <ul id="dropdown-xuat-thanhpham" class="hidden py-2 space-y-2">
                          <li>
-                            <a href="{% url 'KhoThanhPham:xuat_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đơn xuất kho NVL</a>
+                            <a href="{% url 'KhoThanhPham:xuat_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đơn xuất kho thành phẩm</a>
                          </li>
                          <li>
-                            <a href="{% url 'KhoThanhPham:danh_sach_xuat_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đơn xuất kho NVL</a>
+                            <a href="{% url 'KhoThanhPham:danh_sach_xuat_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đơn xuất kho thành phẩm</a>
                          </li>
                    </ul>
                 </li>
 
 
                 <li>
-                   <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-kiem-thanhpham" data-collapse-toggle="dropdown-kiem-thanhpham">
+                   <button type="button" class="flex items-center w-full p-2 text-base text-white rounded-lg group button-hover" aria-controls="dropdown-kiem-thanhpham" data-collapse-toggle="dropdown-kiem-thanhpham">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
                       </svg>
@@ -190,10 +225,10 @@
                    </button>
                    <ul id="dropdown-kiem-thanhpham" class="hidden py-2 space-y-2">
                          <li>
-                            <a href="{% url 'KhoThanhPham:tao_dot_kiem_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đợt kiểm kho thành phẩm</a>
+                            <a href="{% url 'KhoThanhPham:tao_dot_kiem_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tạo đợt kiểm kho thành phẩm</a>
                          </li>
                          <li>
-                            <a href="{% url 'KhoThanhPham:danh_sach_dot_kiem_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đợt kiểm kho thành phẩm</a>
+                            <a href="{% url 'KhoThanhPham:danh_sach_dot_kiem_kho_thanh_pham' %}" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Danh sách đợt kiểm kho thành phẩm</a>
                          </li>
                    </ul>
                 </li>
@@ -204,12 +239,11 @@
          </aside>
         </div>
             <!-- Main Content Area -->
-    <div class="ml-64 flex-1 bg-gray-100">
-        <div class="flex items-center justify-between p-6 bg-white shadow-md"></div>
-        <div class="p-6">
-            {% block content %}
-            <div class="bg-white p-4 rounded-lg shadow-lg"></div>
-            {% endblock %}
-        </div>
-    </div>
+            <main class="flex-1 ml-62 p-1 overflow-y-auto">
+               <div class="bg-white rounded-lg p-6">
+                   {% block content %}
+                   {% endblock %}
+               </div>
+           </main>
+           
 </body>

@@ -127,16 +127,14 @@ def upload_excel(request):
         excel_file = request.FILES['file']
         
         try:
-            # Đọc file Excel bằng pandas
+
             df = pd.read_excel(excel_file, engine='openpyxl')
             
-            # Kiểm tra sự tồn tại của các cột cần thiết
             required_columns = ['Tên thành phẩm', 'Màu sắc', 'Size', 'Đơn giá (VND)', 'Số lượng tồn kho']
             for col in required_columns:
                 if col not in df.columns:
                     raise ValidationError(f"Thiếu cột: {col}")
             
-            # Lặp qua từng dòng trong DataFrame và lưu vào cơ sở dữ liệu
             for _, row in df.iterrows():
                 ThanhPham.objects.create(
                     ten_thanh_pham=row['Tên thành phẩm'],

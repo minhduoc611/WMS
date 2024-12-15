@@ -6,12 +6,13 @@ Danh sách Nhà cung cấp
 
 {% block content %}
 <div class="container mx-auto p-4 relative">
-    <h1 class="text-2xl font-bold mb-4">Danh sách Nhà cung cấp</h1>
+    <h1 class="text-2xl font-bold mb-4 text-yellow-500">Danh sách Nhà cung cấp</h1>
+
 
     <!-- Nút bật modal để thêm NCC mới -->
     <div class="mb-4">
-        <button id="toggle-modal-btn" class="text-gray-900 bg-white border border-yellow-500 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-yellow-500 dark:hover:bg-gray-700 dark:focus:ring-yellow-500 absolute top-4 right-4">Thêm mới +</button>
-        <button id="toggle-upload-modal-btn" class="text-gray-900 bg-white border border-yellow-500 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-yellow-500 dark:hover:bg-gray-700 dark:focus:ring-yellow-500 absolute top-4 right-44">
+        <button id="toggle-modal-btn" class="text-white bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 mb-2 absolute top-4 right-4">Thêm mới +</button>
+        <button id="toggle-upload-modal-btn" class="text-white bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 mb-2 absolute top-4 right-44">
             <i class="fas fa-file-excel mr-2"></i> Nhập File Excel</button>
     </div>
 
@@ -87,10 +88,11 @@ Danh sách Nhà cung cấp
         </div>
     </div>
 
+
     <!-- Bảng hiển thị danh sách nhà cung cấp -->
      
     <table class="table-auto w-full bg-white rounded-lg shadow-md mt-6">
-        <thead class="text-xs text-gray-700 uppercase bg-yellow-500 dark:bg-gray-900 dark:text-gray-100">
+        <thead class="text-xs text-gray-700 uppercase bg-blue-800 dark:bg-gray-900 dark:text-gray-100">
             <tr class="text-white">
                 <th class="px-4 py-2">ID NCC</th>
                 <th class="px-4 py-2" style="width: 200px">Tên Nhà cung cấp</th>    
@@ -100,16 +102,15 @@ Danh sách Nhà cung cấp
                 <th class="px-4 py-2">Địa chỉ</th>
             </tr>
         </thead>
-        <tbody id="ncc-list" class="text-sm text-gray-800">
+        <tbody id="ncc-list" class="text-sm text-gray-800 text-center">
             {% for ncc in danh_sach_ncc %}
-            <tr class="hover:bg-gray-200 transition-colors duration-200">
-                <!-- Cột với 2 màu: Nhạt và Đậm -->
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ ncc.id_ncc |default:" "}}</td>
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ ncc.ten_ncc |default:" "}}</td>
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ ncc.so_dien_thoai |default:" "}}</td>
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200"><a href="{{ ncc.facebook }}" class="text-blue-500">{{ ncc.facebook |default:" "}}</a></td>
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200"><a href="{{ ncc.website }}" class="text-blue-500">{{ ncc.website |default:" "}}</a></td>
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ ncc.dia_chi |default:" "}}</td>
+            <tr class="odd:bg-[#F2E7C3] odd:dark:bg-gray-900 even:bg-[#D1ECF1] even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-[#E6B849]">
+                <td class="px-4 py-2 font-medium">{{ ncc.id_ncc |default:" "}}</td>
+                <td class="px-4 py-2 font-medium">{{ ncc.ten_ncc |default:" "}}</td>
+                <td class="px-4 py-2 text-left font-medium">{{ ncc.so_dien_thoai |default:" "}}</td>
+                <td class="px-4 py-2 font-medium"><a href="{{ ncc.facebook }}" class="text-blue-500">{{ ncc.facebook |default:" "}}</a></td>
+                <td class="px-4 py-2 font-medium"><a href="{{ ncc.website }}" class="text-blue-500">{{ ncc.website |default:" "}}</a></td>
+                <td class="px-4 py-2 font-medium">{{ ncc.dia_chi |default:" "}}</td>
             </tr>
             {% empty %}
             <tr>
@@ -117,6 +118,7 @@ Danh sách Nhà cung cấp
             </tr>
             {% endfor %}
         </tbody>
+        
     </table>
 
     <!-- Thông báo thêm thành công -->
@@ -204,13 +206,13 @@ document.getElementById('form-add-ncc').addEventListener('submit', function (eve
                 // Thêm NCC mới vào bảng
                 const nccList = document.getElementById('ncc-list');
                 nccList.innerHTML += `
-                    <tr class="bg-gray-100 border-b text-left">
-                        <td class="px-4 py-2">${data.ncc.id_ncc}</td>
-                        <td class="px-4 py-2">${data.ncc.ten_ncc}</td>
-                        <td class="px-4 py-2">${data.ncc.so_dien_thoai || ''}</td>
-                        <td class="px-4 py-2"><a href="${data.ncc.facebook}" class="text-blue-500">${data.ncc.facebook || ''}</a></td>
-                        <td class="px-4 py-2"><a href="${data.ncc.website}" class="text-blue-500">${data.ncc.website || ''}</a></td>
-                        <td class="px-4 py-2">${data.ncc.dia_chi || ''}</td>
+                    <tr  class="odd:bg-[#F2E7C3] odd:dark:bg-gray-900 even:bg-[#D1ECF1] even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-[#E6B849]">
+                        <td class="px-4 py-2 font-medium">${data.ncc.id_ncc}</td>
+                        <td class="px-4 py-2 font-medium">${data.ncc.ten_ncc}</td>
+                        <td class="px-4 py-2 font-medium">${data.ncc.so_dien_thoai || ''}</td>
+                        <td class="px-4 py-2 font-medium"><a href="${data.ncc.facebook}" class="text-blue-500">${data.ncc.facebook || ''}</a></td>
+                        <td class="px-4 py-2 font-medium"><a href="${data.ncc.website}" class="text-blue-500">${data.ncc.website || ''}</a></td>
+                        <td class="px-4 py-2 font-medium">${data.ncc.dia_chi || ''}</td>
                     </tr>
                 `;
 
@@ -252,9 +254,11 @@ document.getElementById('form-upload-excel').addEventListener('submit', function
         const uploadMessage = document.getElementById('upload-message');
         uploadMessage.textContent = data.message;
         uploadMessage.classList.remove('hidden');
+            
 
         if (data.success) {
             uploadMessage.classList.add('text-green-500');
+            location.reload(); 
         } else {
             uploadMessage.classList.add('text-red-500');
         }

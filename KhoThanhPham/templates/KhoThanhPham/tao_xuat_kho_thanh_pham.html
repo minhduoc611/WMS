@@ -19,14 +19,14 @@
     }
 </style>
 <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Tạo Phiếu Xuất Kho Thành Phẩm</h1>
+    <h1 class="text-2xl font-bold mb-4 text-yellow-500">Tạo Phiếu Xuất Kho Thành Phẩm</h1>
 
-    <form id="product-outbound-form" method="post" class="bg-white shadow-md rounded p-6">
+    <form id="product-outbound-form" method="post" class="bg-white shadow-md rounded-lg p-6 max-w-4xl mx-auto">
         {% csrf_token %}
         {{ formset.management_form }}
-
+    
         <table class="table-auto w-full bg-white rounded-lg shadow-md mt-4">
-            <thead class="text-xs text-gray-700 uppercase bg-yellow-500 dark:bg-gray-900 dark:text-gray-100">
+            <thead class="text-xs text-gray-700 uppercase bg-blue-800 dark:bg-gray-900 dark:text-gray-100">
                 <tr class="text-white">
                     <th class="px-4 py-2">Thành Phẩm</th>
                     <th class="px-4 py-2">Số Lượng</th>
@@ -39,7 +39,7 @@
                     <td class="px-4 py-2">
                         <select name="items-{{ forloop.counter0 }}-thanh_pham" id="id_items-{{ forloop.counter0 }}-thanh_pham" class="border rounded p-2 w-full input-field">
                             {% for tp in san_pham_list %}
-                            <option value="{{ tp.id }}" {% if form.thanh_pham.value == tp.id %}selected{% endif %}>{{ tp.ten_thanh_pham }} - {{ tp.mau_sac }} - {{ tp.size }} - {{tp.so_luong_ton}}</option>
+                            <option value="{{ tp.id }}" {% if form.thanh_pham.value == tp.id %}selected{% endif %}>{{ tp.ten_thanh_pham }} - {{ tp.mau_sac }} - {{ tp.size }} - Tồn: {{tp.so_luong_ton}}</option>
                             {% endfor %}
                         </select>
                     </td>
@@ -47,9 +47,7 @@
                         <input type="number" name="items-{{ forloop.counter0 }}-so_luong" id="id_items-{{ forloop.counter0 }}-so_luong" min="1" value="{{ form.so_luong.value }}" class="border rounded p-2 w-full input-field">
                     </td>
                     <td class="px-4 py-2 text-center">
-                        {% if forloop.first %}
-                           
-                        {% else %}
+                        {% if not forloop.first %}
                             <a href="#" class="delete-product-item text-red-500 hover:underline">Xóa</a>
                         {% endif %}
                     </td>
@@ -57,13 +55,18 @@
                 {% endfor %}
             </tbody>
         </table>
-
+    
         <input type="hidden" id="id_items-TOTAL_FORMS" name="items-TOTAL_FORMS" value="{{ formset.total_form_count }}">
-        <div class="action-buttons">
-            <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Xuất Kho</button>
-            <button type="button" id="add-product-item-btn" class="text-white bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg text-sm px-5 py-2.5">+</button>
+        <div class="action-buttons flex justify-between mt-6">
+            <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                Xuất Kho
+            </button>
+            <button type="button" id="add-product-item-btn" class="text-white bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg text-sm px-5 py-2.5">
+               Thêm dòng mới+
+            </button>
         </div>
     </form>
+    
 </div>
 
 <script>
@@ -89,7 +92,7 @@
             <td class="px-4 py-2">
                 <select name="items-${formIndex}-thanh_pham" id="id_items-${formIndex}-thanh_pham" class="border rounded p-2 w-full">
                     {% for tp in san_pham_list %}
-                    <option value="{{ tp.id }}">{{ tp.ten_thanh_pham }} - {{ tp.mau_sac }} - {{ tp.size }} - {{tp.so_luong_ton}}</option>
+                    <option value="{{ tp.id }}">{{ tp.ten_thanh_pham }} - {{ tp.mau_sac }} - {{ tp.size }} - Tồn: {{tp.so_luong_ton}}</option>
                     {% endfor %}
                 </select>
             </td>

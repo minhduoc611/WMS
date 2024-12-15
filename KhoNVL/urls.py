@@ -3,6 +3,8 @@ from . import views
 from .views import *
 urlpatterns = [
     path('ncc/', views.ncc_list, name='ncc-list'),
+    path('ncc/<int:id>/delete/', views.ncc_delete, name='ncc_delete'),
+    path('ncc/<int:id>/edit/', views.ncc_edit, name='ncc_edit'),
     path('', views.index, name='index'),
     path('ncc/add/', views.add_ncc, name='add_ncc'),
     path('nvl/', views.nvl_list, name='nvl-list'),

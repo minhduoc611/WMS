@@ -10,7 +10,7 @@
             Quay lại danh sách đơn nhập kho
         </a>
     </div>
-    <h1 class="text-2xl font-bold mb-4">Chi Tiết Đơn Nhập Kho #{{ order.id }}</h1>
+    <h1 class="text-2xl font-bold mb-4 text-yellow-500">Chi Tiết Đơn Nhập Kho #{{ order.id }}</h1>
     
     <div class="mb-4">
         <p><strong>Ngày nhập kho:</strong> {{ order.ngay_dat_hang|date:"d/m/Y H:i" }}</p>
@@ -19,7 +19,7 @@
 
     <div class="overflow-x-auto">
         <table class="table-auto w-full bg-white rounded-lg shadow-md mt-6">
-            <thead  class="text-xs text-gray-700 uppercase bg-yellow-500 dark:bg-gray-900 dark:text-gray-100">
+            <thead  class="text-xs text-gray-700 uppercase bg-blue-800 dark:bg-gray-900 dark:text-gray-100">
                 <tr class="text-white">
                     <th class="px-4 py-2">STT</th> <!-- Cột STT -->
                     <th class="px-4 py-2">Nguyên Vật Liệu</th>
@@ -31,13 +31,13 @@
             </thead>
             <tbody class="text-sm text-gray-800 text-center">
                 {% for item in order_items %}
-                <tr class="border-b hover:bg-gray-100">
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ forloop.counter }}</td> <!-- Số thứ tự -->
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.nvl.ten_vai }}</td>
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.nvl.mau_sac }}</td>
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.so_luong }}</td>
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.get_gia|floatformat:2 }} VND</td>
-                    <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.get_total|floatformat:2 }} VND</td>
+                <tr class="odd:bg-[#F2E7C3] odd:dark:bg-gray-900 even:bg-[#D1ECF1] even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-[#E6B849]">
+                    <td class="px-4 py-2 font-medium">{{ forloop.counter }}</td> <!-- Số thứ tự -->
+                    <td class="px-4 py-2 font-medium">{{ item.nvl.ten_vai }}</td>
+                    <td class="px-4 py-2 font-medium">{{ item.nvl.mau_sac }}</td>
+                    <td class="px-4 py-2 font-medium">{{ item.so_luong }}</td>
+                    <td class="px-4 py-2 font-medium">{{ item.get_gia|floatformat:2 }} VND</td>
+                    <td class="px-4 py-2 font-medium">{{ item.get_total|floatformat:2 }} VND</td>
                 </tr>
                 {% empty %}
                 <tr>

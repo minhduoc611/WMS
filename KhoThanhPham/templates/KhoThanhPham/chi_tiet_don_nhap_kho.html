@@ -10,12 +10,10 @@
             Quay lại danh sách đơn nhập kho
         </a>
     </div>
-    <h1 class="text-2xl font-bold mb-4">Chi Tiết Đơn Nhập Kho #{{ don_nhap_kho.id }}</h1>
+    <h1 class="text-2xl font-bold mb-4 text-yellow-500">Chi Tiết Đơn Nhập Kho #{{ don_nhap_kho.id }}</h1>
     <p><strong>Ngày Nhập:</strong> {{ don_nhap_kho.ngay_nhap|date:"d/m/Y H:i" }}</p>
-
-    <h2 class="text-lg font-semibold mt-6">Chi Tiết Thành Phẩm</h2>
     <table class="table-auto w-full bg-white rounded-lg shadow-md mt-4">
-        <thead class="text-xs text-gray-700 uppercase bg-yellow-500 dark:bg-gray-900 dark:text-gray-100">
+        <thead class="text-xs text-gray-700 uppercase bg-blue-800 dark:bg-gray-900 dark:text-gray-100">
             <tr class="text-white">
                 <th class="px-4 py-2">Thành Phẩm</th>
                 <th class="px-4 py-2">Màu sắc</th>
@@ -25,11 +23,11 @@
         </thead>
         <tbody class="text-sm text-gray-800 text-center">
             {% for item in items %}
-            <tr class="bg-gray-100 border-b text-center">
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.thanh_pham.ten_thanh_pham }}</td>
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.thanh_pham.mau_sac }}</td>
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.thanh_pham.size }}</td>
-                <td class="px-4 py-2 odd:bg-gray-50 even:bg-gray-200">{{ item.so_luong }}</td>
+            <tr class="odd:bg-[#F2E7C3] odd:dark:bg-gray-900 even:bg-[#D1ECF1] even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-[#E6B849]">
+                <td class="px-4 py-2 font-medium">{{ item.thanh_pham.ten_thanh_pham }}</td>
+                <td class="px-4 py-2 font-medium">{{ item.thanh_pham.mau_sac }}</td>
+                <td class="px-4 py-2 font-medium">{{ item.thanh_pham.size }}</td>
+                <td class="px-4 py-2 font-medium">{{ item.so_luong }}</td>
             </tr>
             {% empty %}
             <tr>

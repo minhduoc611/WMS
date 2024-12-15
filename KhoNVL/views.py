@@ -23,29 +23,36 @@ from django.shortcuts import get_object_or_404, render
 
 def index(request):
     return render(request, 'index.html')
-
-# NHÀ CUNG CẤP
-from django.shortcuts import render
-from .models import NCCVai
-
 from django.shortcuts import render
 from .models import NCCVai
 
 def ncc_list(request):
-    # Lấy giá trị tìm kiếm từ GET request
-    ten_ncc = request.GET.get('search', '')  # Mặc định là rỗng nếu không có tìm kiếm
-
-    # Tạo QuerySet ban đầu
+    ten_ncc = request.GET.get('search', '') 
     queryset = NCCVai.objects.all()
-
-    # Nếu có giá trị tìm kiếm, lọc theo tên
     if ten_ncc:
-        queryset = queryset.filter(ten_ncc__icontains=ten_ncc)  # `icontains` cho phép tìm kiếm không phân biệt hoa/thường
+        queryset = queryset.filter(ten_ncc__icontains=ten_ncc)
 
     return render(request, 'KhoNVL/NCC_list.html', {
         'danh_sach_ncc': queryset,
         'ten_ncc': ten_ncc
     })
+def ncc_delete(request, id):
+    ncc = get_object_or_404(NCCVai, id=id)
+    ncc.delete()
+    return redirect('ncc-list')
+
+def ncc_edit(request, id):
+    ncc = get_object_or_404(NCCVai, id=id)
+    if request.method == 'POST':
+        # Lấy thông tin từ form và cập nhật
+        ncc.ten_ncc = request.POST.get('ten_ncc')
+        ncc.so_dien_thoai = request.POST.get('so_dien_thoai')
+        ncc.facebook = request.POST.get('facebook')
+        ncc.website = request.POST.get('website')
+        ncc.dia_chi = request.POST.get('dia_chi')
+        ncc.save()
+        return redirect('ncc_list')
+    return redirect('ncc_list')
 
 
 
@@ -95,15 +102,18 @@ def upload_excel_NCC_view(request):
             if not all(column in df.columns for column in required_columns):
                 return JsonResponse({'success': False, 'message': 'File Excel thiếu thông tin cần thiết!'})
 
+      
+            df = df.fillna('')
+
             for index, row in df.iterrows():
                 NCCVai.objects.update_or_create(
                     id_ncc=row['ID NCC Vải'],
                     defaults={
                         'ten_ncc': row['Tên NCC Vải'],
-                        'so_dien_thoai': row.get('SĐT', ''),
-                        'facebook': row.get('Facebook', ''),
-                        'website': row.get('Website', ''),
-                        'dia_chi': row.get('Địa chỉ', '')
+                        'so_dien_thoai': row['SĐT'], 
+                        'facebook': row['Facebook'], 
+                        'website': row['Website'],  
+                        'dia_chi': row['Địa chỉ']
                     }
                 )
                 
